@@ -11,3 +11,31 @@
 | 10分 | まとめとQ&A | 1. 振り返り：分離・テスト・バインディングの重要性。<br>2. 次のステップ：フレームワーク導入の推奨。<br>3. 質疑応答。 |
 | 合計 |  | 80分 |
 
+
+# 補足資料
+
+MainWindowの説明
+
+MVVMパターンへの変更
+
+Mvvm Toolkitの導入
+
+Npocoの導入
+
+# セミナー内でのProgramの修正順序
+
+1 App.xaml.csの修正 StartupUri="MainWindow.xaml"
+
+2 WPFアプリ(DBからデータを取得し表示する) MVVMを使わない場合
+
+3 App.xaml.csの修正 StartupUri="Mvvm_ViewClass.xaml"
+	開発画面で、 FontSize="30" を追加。全体に影響があることを確認。
+
+4 WPFでMVVMパターンを使った場合の説明 DataContext <local:Mvvm_ViewModelClass />
+
+5 Mvvm Toolkitの導入、実行。 DataContext <local:Mvvm_ViewModelToolkitClass />
+
+6 さらにORMのNpocoを導入、実行。 DataContext <local:Mvvm_ViewModelToolkitNpocoClass />
+
+Xaml側はプレゼンテーション層なので、ほぼ変更はない。
+一方、ViewModelは大きく変更されることを確認。
