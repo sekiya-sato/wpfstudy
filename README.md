@@ -118,13 +118,13 @@ gantt
   excludes    weekends
 
   section リリース
-  開発期間        :done, 2022-04-01, 2022-04-08
+  開発期間        :done, 2025-04-01, 2025-04-08
   アルファリリース期間 :active, 5d
   ベータリリース期間  :5d
   正式リリース      :milestone, 0d
 
   section 開発
-  機能開発      :crit, done, 2022-04-01, 3d
+  機能開発      :crit, done, 2025-04-01, 3d
   デバッグ      :crit, done, 2d
   アナウンス     :crit, done, 1d
   ベータ機能開発 :crit, active, 4d
@@ -152,4 +152,11 @@ erDiagram
         int product_id FK
         int quantity
     }
+```
+円グラフ
+```mermaid
+pie title エディタの使用率
+  "Sakura" : 30
+  "VsCode" : 6
+  "メモ帳" : 2
 ```
