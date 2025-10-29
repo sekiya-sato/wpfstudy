@@ -39,3 +39,110 @@ Npocoの導入
 
 Xaml側はプレゼンテーション層なので、ほぼ変更はない。
 一方、ViewModelは大きく変更されることを確認。
+
+# VS2026で導入されたmermaid chart の説明
+
+縦のフローチャート （上から下: TD）
+```mermaid
+graph TD
+    A[開始] --> B{条件分岐};
+    B -->|Yes| C[処理を実行];
+    B -->|No| D[処理をスキップ];
+    C --> E[終了];
+    D --> E;
+```
+横のフローチャート （左から右: LR）
+```mermaid
+graph LR
+    A[データ入力] -- ユーザー操作 --> B(入力チェック);
+    B -- OK --> C{DBに問い合わせ?};
+    C -- Yes --> D[データ取得];
+    C -- No --> E[単純計算];
+    D --> F((結果表示));
+    E --> F;
+```
+シーケンス図
+```mermaid
+sequenceDiagram
+    participant U as ユーザー
+    participant AS as アプリケーションサーバ
+    participant DB as データベース
+
+    U->>AS: ログイン要求
+    AS->>DB: 認証情報を照合
+    DB-->>AS: 認証結果を返却
+    alt 認証成功
+        AS->>U: ログイン成功画面を表示
+    else 認証失敗
+        AS->>U: エラーメッセージを表示
+    end
+```
+    クラス図 
+```mermaid
+classDiagram
+    class Customer {
+        +int customerId
+        +string name
+        +Order[] orders
+    }
+    class Order {
+        +int orderId
+        +DateTime orderDate
+    }
+    class OrderDetail {
+        +int quantity
+    }
+
+    Customer "1" *-- "0..*" Order : has
+    Order "1" *-- "1..*" OrderDetail : contains
+    Order --|> IDisplayable : implements
+    <<interface>> IDisplayable
+```
+ステート図
+```mermaid
+stateDiagram-v2
+    direction LR
+    [*] --> Draft
+    Draft --> Pending : submit
+    Pending --> Approved : approve
+    Pending --> Rejected : reject
+    Approved --> Paid : make_payment
+    Rejected --> Draft : modify
+    Paid --> [*] : close
+```
+ガントチャート
+```mermaid
+gantt
+    title 販売管理システム開発プロジェクト
+    dateFormat  YYYY-MM-DD
+    section 設計フェーズ
+    要件定義    :id1, 2025-10-01, 7d    // タスクID: id1 (開始日指定)
+    画面設計    :id2, after id1, 5d     // タスクID: id2 (id1の後に開始)
+    section 実装フェーズ
+    商品マスタ画面 :id3, after id2, 10d   // タスクID: id3 (id2の後に開始)
+    注文入力画面 :id4, after id3, 15d   // タスクID: id4 (id3の後に開始)
+    section テスト
+    単体テスト    :crit, id5, after id4, 5d // タグ crit、タスクID: id5
+    結合テスト    :after id5, 7d          // id5の後に開始（タスクIDの指定は省略可）
+```
+エンティティ関連図
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    CUSTOMER {
+        int customer_id PK
+        string name
+        string email
+    }
+    ORDER ||--|{ LINEITEM : contains
+    ORDER {
+        int order_id PK
+        string order_date
+        int customer_id FK
+    }
+    LINEITEM {
+        int line_item_id PK
+        int product_id FK
+        int quantity
+    }
+```
