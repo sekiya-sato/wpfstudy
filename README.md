@@ -113,17 +113,24 @@ stateDiagram-v2
 ガントチャート
 ```mermaid
 gantt
-    title 販売管理システム開発プロジェクト
-    dateFormat  YYYY-MM-DD
-    section 設計フェーズ
-    要件定義    :id1, 2025-10-01, 7d    // タスクID: id1 (開始日指定)
-    画面設計    :id2, after id1, 5d     // タスクID: id2 (id1の後に開始)
-    section 実装フェーズ
-    商品マスタ画面 :id3, after id2, 10d   // タスクID: id3 (id2の後に開始)
-    注文入力画面 :id4, after id3, 15d   // タスクID: id4 (id3の後に開始)
-    section テスト
-    単体テスト    :crit, id5, after id4, 5d // タグ crit、タスクID: id5
-    結合テスト    :after id5, 7d          // id5の後に開始（タスクIDの指定は省略可）
+  dateFormat  YYYY-MM-DD
+  title       販売管理システムWPFプロジェクト 計画
+  excludes    weekends
+
+  section リリース
+  開発期間        :done, 2022-04-01, 2022-04-08
+  アルファリリース期間 :active, 5d
+  ベータリリース期間  :5d
+  正式リリース      :milestone, 0d
+
+  section 開発
+  機能開発      :crit, done, 2022-04-01, 3d
+  デバッグ      :crit, done, 2d
+  アナウンス     :crit, done, 1d
+  ベータ機能開発 :crit, active, 4d
+  バグ修正      :4d
+  最終検証      :1d
+
 ```
 エンティティ関連図
 ```mermaid
